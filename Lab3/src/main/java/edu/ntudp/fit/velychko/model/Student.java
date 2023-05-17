@@ -1,5 +1,7 @@
 package edu.ntudp.fit.velychko.model;
 
+import java.util.Objects;
+
 public class Student extends Human implements Printable {
     public String universityName = "";
     public String facultyName = "";
@@ -56,5 +58,18 @@ public class Student extends Human implements Printable {
         if (!groupName.isEmpty()) {
             System.out.println("Group: " + groupName);
         }
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Student student = (Student) o;
+        return universityName.equals(student.universityName) && facultyName.equals(student.facultyName) && departmentName.equals(student.departmentName) && groupName.equals(student.groupName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), universityName, facultyName, departmentName, groupName);
     }
 }

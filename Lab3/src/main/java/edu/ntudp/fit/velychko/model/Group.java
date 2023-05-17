@@ -2,6 +2,7 @@ package edu.ntudp.fit.velychko.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Group extends StructuralUnit {
     public Group(String name, Human headOfUnit) {
@@ -21,5 +22,18 @@ public class Group extends StructuralUnit {
                 "\nName of the head of the group:\n" +
                 "First name: " + headOfUnit.firstName + ". Last name: " + headOfUnit.lastName +
                 ". Patronymic name: " + headOfUnit.patronymic + ". Sex: " + headOfUnit.sex);
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Group group = (Group) o;
+        return students.equals(group.students);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), students);
     }
 }
